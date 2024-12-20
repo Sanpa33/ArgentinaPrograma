@@ -1,0 +1,26 @@
+<!-- filepath: /C:/Users/sanpa/Desktop/ArgentinaPrograma/Clase5/TareaCalculadoraDeTiempoTotal/index.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculadora de Tiempo Total</title>
+</head>
+<body>
+    <form id="formulario-tiempo">
+        <div class="video">
+            <label for="horas">Horas:</label>
+            <input type="number" class="horas" name="horas" min="0">
+            <label for="minutos">Minutos:</label>
+            <input type="number" class="minutos" name="minutos" min="0" max="59">
+            <label for="segundos">Segundos:</label>
+            <input type="number" class="segundos" name="segundos" min="0" max="59">
+        </div>
+        <button type="button" id="agregar-video">Agregar otro video</button>
+        <button type="button" id="calcular-tiempo-total">Calcular tiempo total</button>
+    </form>
+    <strong id="tiempo-total"></strong>
+
+    <script src="script.js"></script>
+</body>
+</html>
