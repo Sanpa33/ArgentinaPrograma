@@ -50,6 +50,9 @@ document.querySelector('#calcular-grupo-familiar').onclick = function() {
 
 function crearFamiliar(numeroDeFamiliares){
 
+    vaciarFormularioPrincipal();
+
+
     const form = document.getElementById('grupo-familiar');
 
     for (i = 0; i < numeroDeFamiliares; i++){
@@ -159,4 +162,9 @@ document.querySelector('#resetear-formulario').onclick = function() {
 
     return false;
 
+}
+
+function vaciarFormularioPrincipal(){
+    const form = document.getElementById('grupo-familiar');
+    form.textContent = '';
 }
