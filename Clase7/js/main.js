@@ -26,17 +26,15 @@ function validarFormulario(event) {
     'descripcion-regalo': errorDescripcionRegalo,
   };
 
-  manejarErrores(errores);
-
-  // const esExito = manejarErrores(errores) === 0;
+  const esExito = manejarErrores(errores) === 0;
   
-  // if (esExito) {
-  //   $form.className = 'oculto';
-  //   document.querySelector('#exito').className = '';
-  //   setTimeout(() => {
-  //     window.location.href = 'wishlist.html';
-  //   }, 5000);
-  // }
+  if (esExito) {
+    $form.className = 'oculto';
+    document.querySelector('#exito').className = '';
+    setTimeout(() => {
+      window.location.href = 'wishlist.html';
+    }, 5000);
+  }
 
   console.log(nombre);
   console.log(ciudad);
@@ -102,30 +100,34 @@ function validarDescripcionRegalo(descripcionRegalo) {
 
 function manejarErrores(errores) {
 
-  errorNombre = errores.nombre;
-  errorCiudad = errores.ciudad;
-  errorDescripcionRegalo = errores['descripcion-regalo'];
+  limpiarCampoErrores();
+  const keys = Object.keys(errores);
+  const $errores = document.querySelector('#errores');
 
+  let cantidadErrores = 0
 
-  if (errorNombre) {
-    $form.nombre.className = 'error';
-  } else {  
-    $form.nombre.className = '';
-  }
+  keys.forEach(function(key){
+    const error = errores[key];
 
-  if (errorCiudad){
-    $form.ciudad.className = 'error';
-  } else{
-    $form.ciudad.className = '';
-  }
+    if (error){
+      cantidadErrores++;
+      $form[key].className = 'error';
 
-  if(errorDescripcionRegalo){
-    $form["descripcion-regalo"].className = 'error';
-  } else{
-    $form["descripcion-regalo"].className = '';
-  }
-  
+      const $error = document.createElement('li');
+      $error.innerText = error;
+      $errores.appendChild($error);
+    } else {
+      $form[key].className = '';
+    }
 
+  });
+
+  return cantidadErrores;
+}
+
+function limpiarCampoErrores() {
+  const $errores = document.querySelector('#errores');
+  $errores.innerHTML = '';
 }
 
 $form.onsubmit = validarFormulario;
